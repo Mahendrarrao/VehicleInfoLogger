@@ -1,13 +1,16 @@
 ### How to compile and run
+
 All the java files can be compiled in the src directory as below:
-javac edu/asu/Constants.java
-javac edu/asu/GpsValue.java
-javac edu/asu/InsertionInfo.java
-javac edu/asu/VehicleInfoEntry.java
-javac edu/asu/VehicleInfoLogger.java
+
+    javac edu/asu/Constants.java
+    javac edu/asu/GpsValue.java
+    javac edu/asu/InsertionInfo.java
+    javac edu/asu/VehicleInfoEntry.java
+    javac edu/asu/VehicleInfoLogger.java
 
 The program can be run in the src directory as:
-java edu.asu.VehicleInfoLogger > out.txt
+
+    java edu.asu.VehicleInfoLogger > out.txt
 
 The output of the program is stored in the file "out.txt".
 
