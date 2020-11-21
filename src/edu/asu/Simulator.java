@@ -32,7 +32,10 @@ public class Simulator extends TimerTask{
 		// TODO Auto-generated method stub
 		vehicleinfolog = VehicleInfoLogger.vehicleInfoLog;
 		i = (float) (i + 0.1);
-//        System.out.println("Timer ran " + VehicleInfoLogger.roundTwoDecimals(i));
+		if ((int) VehicleInfoLogger.roundTwoDecimals(i) == 45000) {
+			System.exit(0);
+		}
+//        System.out.println("Timer ran " + (int) VehicleInfoLogger.roundTwoDecimals(i));
 		// TODO Auto-generated constructor stub
 		for (VehicleInfoEntry entry : vehicleinfolog) {
             short availableTypes = entry.getAvailableTypes();
@@ -65,6 +68,9 @@ public class Simulator extends TimerTask{
                     this.longitutde = String.valueOf(gpsValue.getLongitude());
                 }
             }
+//            System.out.println(VehicleInfoLogger.roundTwoDecimals(i) + "|" + steeringWheelAngle + "|" + displayedVehicleSpeed + "|" +  yawRate + "|" + 
+//            longitudeAcceleration + "|" + latitudeAcceleration + "|" + latitude + ", " + longitutde);  
 		}
+		
 	}
 }

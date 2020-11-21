@@ -395,9 +395,10 @@ public class VehicleInfoLogger {
 
         if (parseSensorData(canMessagesTrc)) {
             if (parseGpsTrackHtm(gpsTrackHtm)) {
+            	System.out.println("TimeOffset|Steering Wheel Angle|Displayed Speed|Yaw Rate|Longitude Acceleration|Latitude Acceleration|GPS Position");
             	Timer timer = new Timer();
                 TimerTask task = new Simulator();
-                timer.schedule(task, 1000, 1);
+                timer.schedule(task, 1, 1);
 //            	printVehicleInfoLog();
             }
 
