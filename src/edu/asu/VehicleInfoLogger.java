@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -26,8 +28,8 @@ import static edu.asu.Constants.YAW_RATE_MIN_VALUE;
 import static edu.asu.Constants.YAW_RATE_STEP_SIZE;
 
 public class VehicleInfoLogger {
-    private static final String DEFAULT_CAN_MSGS_TRC_FILE = "19 CANmessages.trc";
-    private static final String DEFAULT_GPS_TRACK_HTM_FILE = "19 GPS Track.htm";
+    private static final String DEFAULT_CAN_MSGS_TRC_FILE = "/Users/kushagrjolly/Desktop/Fall 2020/SER540/19 CANmessages.trc";
+    private static final String DEFAULT_GPS_TRACK_HTM_FILE = "/Users/kushagrjolly/Desktop/Fall 2020/SER540/19 GPS Track.htm";
 
 
     private static float calcSteeringWheelAngle(int byte1, int byte2) {
@@ -91,7 +93,7 @@ public class VehicleInfoLogger {
         return acceleration;
     }
 
-    private static float roundTwoDecimals(float value) {
+    public static float roundTwoDecimals(float value) {
         int scaled = Math.round(value * 100);
         return ((float) scaled / 100);
     }
@@ -370,7 +372,7 @@ public class VehicleInfoLogger {
     }
 
     // This ArrayList stores the sensor and GPS data for all time offsets
-    private static final ArrayList<VehicleInfoEntry> vehicleInfoLog = new ArrayList<>();
+    public static final ArrayList<VehicleInfoEntry> vehicleInfoLog = new ArrayList<>();
 
     /*
      * The inputs for this program are the trc file that contains sensor data and the GPS HTM
@@ -392,8 +394,13 @@ public class VehicleInfoLogger {
         }
 
         if (parseSensorData(canMessagesTrc)) {
-            if (parseGpsTrackHtm(gpsTrackHtm))
-                printVehicleInfoLog();
+            if (parseGpsTrackHtm(gpsTrackHtm)) {
+            	Timer timer = new Timer();
+                TimerTask task = new Simulator();
+                timer.schedule(task, 1000, 1);
+//            	printVehicleInfoLog();
+            }
+
             else
                 System.out.println("Unable to parse file: " + gpsTrackHtm);
         } else {
